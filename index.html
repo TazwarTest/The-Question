@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question for Tara ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        button {
+            width: 160px;
+            height: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        background-color 0.3s ease;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 77, 109, 0.2);
+            z-index: 10;
+        }
+
+        #noBtn {
+            background-color: #ffffff;
+            color: #590d22;
+            border: 2px solid #590d22;
+            position: relative;
+            z-index: 999;
+            touch-action: none;
+        }
+
+        /* Success Screen Styling */
+        .success-screen {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .success-screen h1 {
+            font-size: 3rem;
+            color: #ff4d6d;
+            margin-bottom: 10px;
+        }
+
+        .success-screen p {
+            font-size: 1.8rem;
+            color: #590d22;
+            margin-top: 0;
+        }
+
+        .ring-container {
+            font-size: 10rem; /* Makes the ring big */
+            margin-top: 20px;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6));
+            animation: ringGlow 2s infinite alternate;
+        }
+
+        @keyframes ringGlow {
+            from { transform: scale(1) rotate(-5deg); filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.4)); }
+            to { transform: scale(1.1) rotate(5deg); filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-content" class="container">
+        <h1>Will you be my Valentine, Tara? 🌹</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes, definitely!</button>
+            <button id="noBtn">No, I won't</button>
+        </div>
+    </div>
+
+    <div id="success-message" class="success-screen">
+        <h1>Yay! ❤️</h1>
+        <p>Here is the Ring for you Tara</p>
+        <div class="ring-container">💍</div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+
+        const moveButton = () => {
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            const maxX = window.innerWidth - btnWidth - 40;
+            const maxY = window.innerHeight - btnHeight - 40;
+
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+        };
+
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function celebrate() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+            document.body.style.backgroundColor = "#ffccd5";
+            
+            noBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
